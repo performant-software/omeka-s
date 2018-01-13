@@ -1,0 +1,3 @@
+[submodule "modules/Neatline"]
+	path = modules/Neatline
+	url = git@github.com:performant-software/neatline-omeka-s.git
