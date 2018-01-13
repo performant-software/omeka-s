@@ -1,5 +1,5 @@
 /.ant-targets-build.xml
-/.htaccess
+#/.htaccess
 /.php_cs.cache
 /build/
 #/config/local.config.php
