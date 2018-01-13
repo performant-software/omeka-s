@@ -2,8 +2,8 @@
 /.htaccess
 /.php_cs.cache
 /build/
-/config/local.config.php
-/config/database.ini
+#/config/local.config.php
+#/config/database.ini
 /logs/sql.log
 /logs/application.log
 /files/
