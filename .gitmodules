@@ -1,4 +1,4 @@
 [submodule "modules/Neatline"]
 	path = modules/Neatline
-  url = https://6f2d0fb54eefa9e9affbb944c4697434abc85805:x-oauth-basic@github.com/performant-software/neatline-omeka-s.git
+  url = https://github.com/performant-software/neatline-omeka-s.git
   branch = aks/records
