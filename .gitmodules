@@ -1,4 +1,4 @@
 [submodule "modules/Neatline"]
 	path = modules/Neatline
   url = https://github.com/performant-software/neatline-omeka-s.git
-  branch = aks/jwt
+  branch = aks/editor
