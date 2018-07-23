@@ -7,7 +7,7 @@
 /logs/sql.log
 /logs/application.log
 /files/
-/modules/
+#/modules/
 /themes/
 /application/test/config/database.ini
 /vendor/
