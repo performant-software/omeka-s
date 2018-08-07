@@ -1,7 +1,8 @@
 [submodule "modules/Neatline"]
 	path = modules/Neatline
   url = https://github.com/performant-software/neatline-omeka-s.git
-  branch = master 
+  branch = master
 [submodule "modules/Omeka2Importer"]
 	path = modules/Omeka2Importer
 	url = https://github.com/omeka-s-modules/Omeka2Importer.git
+	branch = master
