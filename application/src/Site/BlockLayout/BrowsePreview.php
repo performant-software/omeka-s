@@ -47,6 +47,7 @@ class BrowsePreview extends AbstractBlockLayout
             'options' => [
                 'label' => 'Query', // @translate
                 'info' => 'Display resources using this search query', // @translate
+                'documentation' => 'https://omeka.org/s/docs/user-manual/sites/site_pages/#browse-preview',
             ],
         ]);
         $form->add([
@@ -94,7 +95,7 @@ class BrowsePreview extends AbstractBlockLayout
 
         $site = $block->page()->site();
         if ($view->siteSetting('browse_attached_items', false)) {
-            $itemPool['site_attachments_only'] = true;
+            $query['site_attachments_only'] = true;
         }
 
         $query['site_id'] = $site->id();
