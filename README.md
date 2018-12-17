@@ -1,14 +1,4 @@
-# Omeka S for Neatline 3 Heroku Deployment
-
-*This is a fork of Omeka S configured for deployment to a Heroku staging environment for Neatline 3 development.*
-
-See [deployment steps](https://github.com/performant-software/neatline-omeka-s/#heroku-deployment) on the Neatline Omeka S repository.
-
-Note, this is for pre-alpha internal development purposes only, and is not intended for a broader developer audience.
-
-It is assumed that most users will not deploy Omeka S and Neatline to Heroku; the process for installing stable releases will be comparable to that for any other Omeka S module, on any compatible hosting platform.
-
-#### Omeka S Default README follows.
+# Omeka S
 
 Omeka S is a web publication system for universities, galleries, libraries,
 archives, and museums. It consists of a local network of independently curated
