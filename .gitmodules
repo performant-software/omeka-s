@@ -1,4 +1,3 @@
 [submodule "modules/Neatline"]
 	path = modules/Neatline
-  url = https://github.com/performant-software/neatline-omeka-s.git
-  branch = aks/navigation
+	url = https://github.com/scholarslab/neatline-omeka-s.git
