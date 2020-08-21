@@ -604,8 +604,19 @@ return [
     ],
     'mail' => [
         'transport' => [
-            'type' => 'sendmail',
-            'options' => [],
+            'type' => 'smtp',
+            'options' => [
+              'name' => 'smtp.sendgrid.net',
+              'host' => 'smtp.sendgrid.net',
+              'port' => 587,
+              'connection_class' => 'plain',
+              'connection_config' => [
+                'username' => 'apikey',
+                'password' => ${SENDGRID_APIKEY},
+                'ssl' => 'tls',
+                'use_complete_quit' => true,
+              ]
+            ],
         ],
         'default_message_options' => [
             'encoding' => 'UTF-8',
