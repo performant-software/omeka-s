@@ -9,7 +9,6 @@ use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
 use Doctrine\ORM\Tools\Setup;
 use Omeka\Db\Event\Listener\ResourceDiscriminatorMap;
-use Omeka\Db\Event\Listener\Utf8mb4;
 use Omeka\Db\Event\Subscriber\Entity;
 use Omeka\Db\ProxyAutoloader;
 use Zend\ServiceManager\Factory\FactoryInterface;
@@ -30,6 +29,8 @@ class EntityManagerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
     {
+        require_once OMEKA_PATH . '/application/data/overrides/AbstractProxyFactory.php';
+
         $appConfig = $serviceLocator->get('ApplicationConfig');
         $config = $serviceLocator->get('Config');
 
@@ -51,17 +52,24 @@ class EntityManagerFactory implements FactoryInterface
             $isDevMode = self::IS_DEV_MODE;
         }
 
+        $arrayCache = new ArrayCache();
         if (extension_loaded('apcu') && !$isDevMode) {
             $cache = new ApcuCache();
         } else {
-            $cache = new ArrayCache();
+            $cache = $arrayCache;
         }
 
         // Set up the entity manager configuration.
         $emConfig = Setup::createAnnotationMetadataConfiguration(
-            $config['entity_manager']['mapping_classes_paths'], $isDevMode, null, $cache
+            $config['entity_manager']['mapping_classes_paths'],
+            $isDevMode,
+            OMEKA_PATH . '/application/data/doctrine-proxies',
+            $cache
         );
-        $emConfig->setProxyDir(OMEKA_PATH . '/application/data/doctrine-proxies');
+
+        // Force non-persistent query cache, workaround for issue with SQL filters
+        // that vary by user, permission level
+        $emConfig->setQueryCacheImpl($arrayCache);
 
         // Use the underscore naming strategy to preempt potential compatibility
         // issues with the case sensitivity of various operating systems.
@@ -93,7 +101,6 @@ class EntityManagerFactory implements FactoryInterface
             Events::loadClassMetadata,
             new ResourceDiscriminatorMap($config['entity_manager']['resource_discriminator_map'])
         );
-        $em->getEventManager()->addEventListener(Events::loadClassMetadata, new Utf8mb4);
         $em->getEventManager()->addEventSubscriber(new Entity($serviceLocator->get('EventManager')));
         // Instantiate the visibility filters and inject the service locator.
         $em->getFilters()->enable('resource_visibility');
